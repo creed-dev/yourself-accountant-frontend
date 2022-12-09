@@ -1,0 +1,47 @@
+<div class="sing-modal">
+  <h2>Форма {{ data.type === SIGN_ENUM.SIGN_IN ? 'входа' : 'регистрации' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field [ngClass]="{
+        'margin-bottom-1': form.controls['email'].errors
+      }">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-hint *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['required']">
+          * Это поле является обязательным
+        </mat-hint>
+        <mat-hint *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']">
+          * Введите email
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field [ngClass]="{
+        'margin-bottom-1': form.controls['password'].errors
+      }">
+        <mat-label>Пароль</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="'Скрыть пароль'"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-hint *ngIf="form.controls['password'].touched && form.controls['password'].errors?.['required']">
+          * Это поле является обязательным
+        </mat-hint>
+        <mat-hint *ngIf="form.controls['password'].touched && form.controls['password'].errors?.['minlength']">
+          * Минимальная длина пароля - 6 имволов
+        </mat-hint>
+      </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.valid">
+      {{ data.type === SIGN_ENUM.SIGN_IN ? 'Войти' : 'Зарегистрироваться' }}
+    </button>
+  </form>
+</div>
