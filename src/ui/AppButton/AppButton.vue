@@ -9,7 +9,7 @@ interface Props {
   color: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props: Props = withDefaults(defineProps<Props>(), {
   color: "primary",
 });
 

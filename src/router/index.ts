@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { loadLayoutMiddleware } from "@/router/middlewares/loadLayout.middleware";
-import { AppLayoutsEnum } from "@/layouts/layouts.types";
+import { AppLayoutsEnum } from "@/enums/appLayouts.enum";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
       name: "home",
       component: () => import("@/pages/Index/IndexPage.vue"),
       meta: {
-        layout: AppLayoutsEnum.default,
+        layout: AppLayoutsEnum.DEFAULT,
       },
     },
     // {
