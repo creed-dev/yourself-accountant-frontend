@@ -41,12 +41,20 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { SignEnum } from "@/enums/sign.enum";
+import AuthApi from "@/api/auth.api";
+import Errors from "@/helpers/errors";
+import { useAuthStore } from "@/stores/auth.store";
+import { storeToRefs } from "pinia";
 
 interface Props {
   action: string;
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits(["successRegister", "successLogin"]);
+
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 
 const signEnum = SignEnum;
 
@@ -56,7 +64,28 @@ const repeatPassword = ref<string>("");
 
 let passwordsMismatch: boolean = false;
 
-function onSubmit() {}
+async function onSubmit() {
+  if (props.action === signEnum.SIGN_UP && !passwordsMismatch) {
+    try {
+      await AuthApi.signUp(email.value, password.value);
+      emit("successRegister");
+    } catch (error: any) {
+      Errors.notifyBackendError(error.response.data.message);
+    }
+  }
+
+  if (props.action === signEnum.SIGN_IN) {
+    try {
+      const login = await AuthApi.login(email.value, password.value);
+      authStore.setBearerToken(login.data.accessToken);
+      const me = await AuthApi.me();
+      user.value = me.data;
+      emit("successLogin");
+    } catch (error: any) {
+      Errors.notifyBackendError(error.response.data.message);
+    }
+  }
+}
 
 if (props.action === signEnum.SIGN_UP) {
   watch(password, (newValue) => {
