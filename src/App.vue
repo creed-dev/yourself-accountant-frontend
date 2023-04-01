@@ -14,6 +14,7 @@ import { ResponseStatusCode } from "@/enums/response-status-code.enum";
 import SignDialog from "@/components/SignDialog/SignDialog.vue";
 import { useQuasar } from "quasar";
 import { SignEnum } from "@/enums/sign.enum";
+import { RouterName } from "@/enums/router-name.enum";
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
@@ -30,7 +31,7 @@ async function getUser() {
     user.value = me.data;
   } catch (error: any) {
     if (error.response.data.statusCode === ResponseStatusCode.UNAUTHORIZED) {
-      await router.push("/");
+      router.push({ name: RouterName.HOME });
 
       quasar.dialog({
         component: SignDialog,

@@ -15,7 +15,10 @@
     </template>
 
     <template v-else>
-      <q-btn color="primary" label="Sign Out" @click="signOut()" />
+      <RouterLink to="/dashboard">
+        <q-btn color="primary" label="Dashboard" />
+      </RouterLink>
+      <q-btn color="red" label="Sign Out" @click="signOut()" />
     </template>
   </header>
 </template>
@@ -26,10 +29,13 @@ import { useQuasar } from "quasar";
 import { SignEnum } from "@/enums/sign.enum";
 import { useAuthStore } from "@/stores/auth.store";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+import { RouterName } from "@/enums/router-name.enum";
 
 const quasar = useQuasar();
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
+const router = useRouter();
 
 const signEnum = SignEnum;
 
@@ -43,5 +49,6 @@ const showModal = (action: string) => {
 const signOut = () => {
   authStore.deleteBearerToken();
   user.value = null;
+  router.push({ name: RouterName.HOME });
 };
 </script>
