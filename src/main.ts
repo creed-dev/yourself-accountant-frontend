@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
-import { Quasar } from "quasar";
+import { Dialog, Notify, Quasar } from "quasar";
 
 // Import Roboto Font
 import "@quasar/extras/roboto-font/roboto-font.css";
@@ -18,10 +18,10 @@ import "./assets/css/tailwind.css";
 
 const app = createApp(App);
 
-app.use(createPinia());
 app.use(router);
+app.use(createPinia());
 app.use(Quasar, {
-  plugins: {}, // import Quasar plugins and add here
+  plugins: { Dialog, Notify },
 });
 
 app.mount("#app");
