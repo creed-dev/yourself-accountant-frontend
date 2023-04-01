@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { loadLayoutMiddleware } from "@/router/middlewares/loadLayout.middleware";
-import { AppLayoutsEnum } from "@/enums/appLayouts.enum";
+import { loadLayoutMiddleware } from "@/router/middlewares/load-layout.middleware";
+import { AppLayoutsEnum } from "@/enums/app-layouts.enum";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

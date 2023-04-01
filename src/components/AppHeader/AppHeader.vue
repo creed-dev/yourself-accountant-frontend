@@ -2,15 +2,15 @@
   <header class="flex justify-end gap-4 p-3 bg-slate-100 mb-4">
     <template v-if="!user">
       <q-btn
-        color="secondary"
-        label="Sign In"
-        @click="showModal(signEnum.SIGN_IN)"
-      />
-
-      <q-btn
         color="primary"
         label="Sign Up"
         @click="showModal(signEnum.SIGN_UP)"
+      />
+
+      <q-btn
+        color="secondary"
+        label="Sign In"
+        @click="showModal(signEnum.SIGN_IN)"
       />
     </template>
 
