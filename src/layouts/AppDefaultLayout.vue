@@ -1,7 +1,9 @@
 <template>
-  <DefaultHeader></DefaultHeader>
+  <q-layout>
+    <DefaultHeader></DefaultHeader>
 
-  <slot />
+    <slot />
+  </q-layout>
 </template>
 
 <script setup lang="ts">

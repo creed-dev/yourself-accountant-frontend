@@ -23,7 +23,7 @@ import SignForm from "@/components/SignForm/SignForm.vue";
 import { ref } from "vue";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
-import { RouterName } from "@/enums/router-name.enum";
+import { RouteName } from "@/enums/router-name.enum";
 
 interface Props {
   action: string;
@@ -54,6 +54,6 @@ function successLogin() {
   });
 
   dialogIsOpen.value = false;
-  router.push({ name: RouterName.DASHBOARD_INDEX });
+  router.push({ name: RouteName.DASHBOARD_INDEX });
 }
 </script>
