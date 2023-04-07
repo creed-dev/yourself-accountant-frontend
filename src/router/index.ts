@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { loadLayoutMiddleware } from '@/router/middlewares/load-layout.middleware';
-import { AppLayoutsEnum } from '@/enums/app-layouts.enum';
+import { AppLayout } from '@/enums/app-layouts.enum';
 import RouterGuards from '@/helpers/router-guards';
 import { RouteName } from '@/enums/router-name.enum';
 
@@ -12,13 +12,13 @@ const router = createRouter({
       name: RouteName.HOME,
       component: () => import('@/pages/Index/IndexPage.vue'),
       meta: {
-        layout: AppLayoutsEnum.DEFAULT,
+        layout: AppLayout.DEFAULT,
       },
     },
     {
       path: '/dashboard',
       meta: {
-        layout: AppLayoutsEnum.DASHBOARD,
+        layout: AppLayout.DASHBOARD,
       },
       beforeEnter: [RouterGuards.dashboardGuard],
       children: [
