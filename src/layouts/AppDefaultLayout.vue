@@ -7,5 +7,5 @@
 </template>
 
 <script setup lang="ts">
-import DefaultHeader from "@/components/AppHeader/AppHeader.vue";
+import DefaultHeader from '@/components/AppHeader/AppHeader.vue';
 </script>

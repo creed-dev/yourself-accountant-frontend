@@ -1,11 +1,11 @@
-import { Notify } from "quasar";
+import { Notify } from 'quasar';
 
 function notifyBackendError(error: string[]) {
   error.forEach((item: string) => {
     Notify.create({
-      type: "negative",
+      type: 'negative',
       message: item,
-      position: "top-right",
+      position: 'top-right',
     });
   });
 }

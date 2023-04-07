@@ -24,14 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import SignDialog from "@/components/SignDialog/SignDialog.vue";
-import { useQuasar } from "quasar";
-import { SignEnum } from "@/enums/sign.enum";
-import { useAuthStore } from "@/stores/auth.store";
-import { storeToRefs } from "pinia";
-import { useRoute, useRouter } from "vue-router";
-import { RouteName } from "@/enums/router-name.enum";
-import { computed } from "vue";
+import SignDialog from '@/components/SignDialog/SignDialog.vue';
+import { useQuasar } from 'quasar';
+import { SignEnum } from '@/enums/sign.enum';
+import { useAuthStore } from '@/stores/auth.store';
+import { storeToRefs } from 'pinia';
+import { useRoute, useRouter } from 'vue-router';
+import { RouteName } from '@/enums/router-name.enum';
+import { computed } from 'vue';
 
 const quasar = useQuasar();
 const authStore = useAuthStore();
@@ -42,7 +42,7 @@ const route = useRoute();
 const signEnum = SignEnum;
 
 const onDashboardPage = computed(() => {
-  return route.path.includes("dashboard");
+  return route.path.includes('dashboard');
 });
 
 function showModal(action: string) {

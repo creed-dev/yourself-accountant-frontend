@@ -34,9 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import DefaultHeader from "@/components/AppHeader/AppHeader.vue";
-import { RouteName } from "@/enums/router-name.enum";
-import { useRoute, useRouter } from "vue-router";
+import DefaultHeader from '@/components/AppHeader/AppHeader.vue';
+import { RouteName } from '@/enums/router-name.enum';
+import { useRoute, useRouter } from 'vue-router';
 
 interface MenuItem {
   icon: string;
@@ -51,13 +51,13 @@ const showDrawer = true;
 
 const menuList: MenuItem[] = [
   {
-    icon: "space_dashboard",
-    label: "Dashboard",
+    icon: 'space_dashboard',
+    label: 'Dashboard',
     routeName: RouteName.DASHBOARD_INDEX,
   },
   {
-    icon: "request_quote",
-    label: "Debts",
+    icon: 'request_quote',
+    label: 'Debts',
     routeName: RouteName.DASHBOARD_DEBTS,
   },
 ];

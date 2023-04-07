@@ -1,36 +1,36 @@
-import { createRouter, createWebHistory } from "vue-router";
-import { loadLayoutMiddleware } from "@/router/middlewares/load-layout.middleware";
-import { AppLayoutsEnum } from "@/enums/app-layouts.enum";
-import RouterGuards from "@/helpers/router-guards";
-import { RouteName } from "@/enums/router-name.enum";
+import { createRouter, createWebHistory } from 'vue-router';
+import { loadLayoutMiddleware } from '@/router/middlewares/load-layout.middleware';
+import { AppLayoutsEnum } from '@/enums/app-layouts.enum';
+import RouterGuards from '@/helpers/router-guards';
+import { RouteName } from '@/enums/router-name.enum';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
+      path: '/',
       name: RouteName.HOME,
-      component: () => import("@/pages/Index/IndexPage.vue"),
+      component: () => import('@/pages/Index/IndexPage.vue'),
       meta: {
         layout: AppLayoutsEnum.DEFAULT,
       },
     },
     {
-      path: "/dashboard",
+      path: '/dashboard',
       meta: {
         layout: AppLayoutsEnum.DASHBOARD,
       },
       beforeEnter: [RouterGuards.dashboardGuard],
       children: [
         {
-          path: "",
+          path: '',
           name: RouteName.DASHBOARD_INDEX,
-          component: () => import("@/pages/Dashboard/DashboardIndexPage.vue"),
+          component: () => import('@/pages/Dashboard/DashboardIndexPage.vue'),
         },
         {
-          path: "debts",
+          path: 'debts',
           name: RouteName.DASHBOARD_DEBTS,
-          component: () => import("@/pages/Dashboard/DashboardDebtsPage.vue"),
+          component: () => import('@/pages/Dashboard/DashboardDebtsPage.vue'),
         },
       ],
     },

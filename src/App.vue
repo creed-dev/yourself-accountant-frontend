@@ -5,16 +5,16 @@
 </template>
 
 <script setup lang="ts">
-import AppLayout from "@/layouts/AppLayout.vue";
-import { useAuthStore } from "@/stores/auth.store";
-import AuthApi from "@/api/auth.api";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import { ResponseStatusCode } from "@/enums/response-status-code.enum";
-import SignDialog from "@/components/SignDialog/SignDialog.vue";
-import { useQuasar } from "quasar";
-import { SignEnum } from "@/enums/sign.enum";
-import { RouteName } from "@/enums/router-name.enum";
+import AppLayout from '@/layouts/AppLayout.vue';
+import { useAuthStore } from '@/stores/auth.store';
+import AuthApi from '@/api/auth.api';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import { ResponseStatusCode } from '@/enums/response-status-code.enum';
+import SignDialog from '@/components/SignDialog/SignDialog.vue';
+import { useQuasar } from 'quasar';
+import { SignEnum } from '@/enums/sign.enum';
+import { RouteName } from '@/enums/router-name.enum';
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
