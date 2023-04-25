@@ -39,7 +39,6 @@
       </q-page>
     </q-page-container>
   </q-layout>
-  <slot />
 </template>
 
 <script setup lang="ts">

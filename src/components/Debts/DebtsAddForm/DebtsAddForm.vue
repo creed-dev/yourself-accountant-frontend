@@ -1,5 +1,5 @@
 <template>
-  <q-form class="flex gap-3" @submit="onSubmit()">
+  <q-form class="flex gap-3 mb-3" ref="form" @submit="onSubmit()">
     <q-input
       outlined
       type="text"
@@ -11,19 +11,18 @@
 
     <q-input
       outlined
-      type="text"
+      type="number"
       v-model="amount"
       label="Сумма"
       lazy-rules
-      :rules="[
-        (val) => (val && val.length > 0 && val > 0) || 'Сумма обязательна',
-      ]"
+      :rules="[(val) => (val && val > 0) || 'Сумма обязательна']"
     />
 
     <q-input
       outlined
       v-model="date"
       mask="date"
+      lazy-rules
       :rules="[(val) => (val && val.length > 0) || 'Дата обязательна']"
     >
       <template v-slot:append>
@@ -54,16 +53,49 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { Debt } from '@/models/debt.interface';
+import DebtsApi from '@/api/debts.api';
+import { useDebtsStore } from '@/stores/debts.store';
+import Errors from '@/helpers/errors';
+import type { QForm } from 'quasar';
 
-const name = ref<string>('');
-const date = ref<string>('');
-const amount = ref<string>('');
+interface Props {
+  debtType: number;
+}
+
+const props = defineProps<Props>();
+
+const debtsStore = useDebtsStore();
+
+const form = ref<QForm | null>(null);
+const name = ref<string | null>(null);
+const date = ref<string | null>(null);
+const amount = ref<number | null>(null);
 const showDisplayPopup = ref<boolean>(false);
 
-function onSubmit() {
-  console.log(name.value);
-  console.log(new Date(date.value));
-  console.log(amount.value);
+async function onSubmit() {
+  try {
+    const debt: Debt = {
+      name: name.value!,
+      amount: Number(amount.value),
+      date: date.value!.split('/').join('-'),
+      type: props.debtType,
+    };
+
+    const newDebt = await DebtsApi.createDebt(debt);
+    debtsStore.addDebt(newDebt.data);
+
+    clearForm();
+  } catch (error: any) {
+    Errors.notifyBackendError(error);
+  }
+}
+
+function clearForm() {
+  form.value!.resetValidation();
+  name.value = null;
+  amount.value = null;
+  date.value = null;
 }
 </script>
 

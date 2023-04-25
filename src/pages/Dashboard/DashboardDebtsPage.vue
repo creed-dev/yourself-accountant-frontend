@@ -1,8 +1,12 @@
 <template>
   <div class="flex justify-between">
-    <Debts />
+    <DebtsCard :debt-type="debtTypeEnum.ToMe"></DebtsCard>
+    <DebtsCard :debt-type="debtTypeEnum.FromMe"></DebtsCard>
   </div>
 </template>
 <script setup lang="ts">
-import Debts from '@/components/Debts/Debts.vue';
+import DebtsCard from '@/components/Debts/DebtsCard.vue';
+import { DebtType } from '@/enums/debt-type.enum';
+
+const debtTypeEnum = DebtType;
 </script>
