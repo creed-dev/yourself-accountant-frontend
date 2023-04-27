@@ -70,7 +70,7 @@ async function onSubmit() {
       await AuthApi.signUp(email.value, password.value);
       emit('successRegister');
     } catch (error: any) {
-      Errors.notifyBackendError(error.response.data.message);
+      Errors.notifyBackendError(error);
     }
   }
 
@@ -82,7 +82,7 @@ async function onSubmit() {
       user.value = me.data;
       emit('successLogin');
     } catch (error: any) {
-      Errors.notifyBackendError(error.response.data.message);
+      Errors.notifyBackendError(error);
     }
   }
 }
