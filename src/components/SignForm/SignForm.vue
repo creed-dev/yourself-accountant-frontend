@@ -39,28 +39,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { SignEnum } from "@/enums/sign.enum";
-import AuthApi from "@/api/auth.api";
-import Errors from "@/helpers/errors";
-import { useAuthStore } from "@/stores/auth.store";
-import { storeToRefs } from "pinia";
+import { ref, watch } from 'vue';
+import { SignEnum } from '@/enums/sign.enum';
+import AuthApi from '@/api/auth.api';
+import Errors from '@/helpers/errors';
+import { useAuthStore } from '@/stores/auth.store';
+import { storeToRefs } from 'pinia';
 
 interface Props {
   action: string;
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits(["successRegister", "successLogin"]);
+const emit = defineEmits(['successRegister', 'successLogin']);
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 
 const signEnum = SignEnum;
 
-const email = ref<string>("");
-const password = ref<string>("");
-const repeatPassword = ref<string>("");
+const email = ref<string>('');
+const password = ref<string>('');
+const repeatPassword = ref<string>('');
 
 let passwordsMismatch: boolean = false;
 
@@ -68,9 +68,9 @@ async function onSubmit() {
   if (props.action === signEnum.SIGN_UP && !passwordsMismatch) {
     try {
       await AuthApi.signUp(email.value, password.value);
-      emit("successRegister");
+      emit('successRegister');
     } catch (error: any) {
-      Errors.notifyBackendError(error.response.data.message);
+      Errors.notifyBackendError(error);
     }
   }
 
@@ -80,9 +80,9 @@ async function onSubmit() {
       authStore.setBearerToken(login.data.accessToken);
       const me = await AuthApi.me();
       user.value = me.data;
-      emit("successLogin");
+      emit('successLogin');
     } catch (error: any) {
-      Errors.notifyBackendError(error.response.data.message);
+      Errors.notifyBackendError(error);
     }
   }
 }

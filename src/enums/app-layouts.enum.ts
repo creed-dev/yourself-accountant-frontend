@@ -1,4 +1,4 @@
-export enum AppLayoutsEnum {
-  DEFAULT = "default",
-  DASHBOARD = "dashboard",
+export enum AppLayout {
+  DEFAULT = 'default',
+  DASHBOARD = 'dashboard',
 }

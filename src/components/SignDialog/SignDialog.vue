@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import SignForm from "@/components/SignForm/SignForm.vue";
-import { ref } from "vue";
-import { useQuasar } from "quasar";
-import { useRouter } from "vue-router";
-import { RouteName } from "@/enums/router-name.enum";
+import SignForm from '@/components/SignForm/SignForm.vue';
+import { ref } from 'vue';
+import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
+import { RouteName } from '@/enums/router-name.enum';
 
 interface Props {
   action: string;
@@ -38,9 +38,9 @@ let dialogIsOpen = ref<boolean>(true);
 
 function successRegistered() {
   quasar.notify({
-    type: "positive",
-    message: "You are successfully registered, please login",
-    position: "top-right",
+    type: 'positive',
+    message: 'You are successfully registered, please login',
+    position: 'top-right',
   });
 
   dialogIsOpen.value = false;
@@ -48,9 +48,9 @@ function successRegistered() {
 
 function successLogin() {
   quasar.notify({
-    type: "positive",
-    message: "You are successfully login",
-    position: "top-right",
+    type: 'positive',
+    message: 'You are successfully login',
+    position: 'top-right',
   });
 
   dialogIsOpen.value = false;
