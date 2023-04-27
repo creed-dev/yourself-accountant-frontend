@@ -43,8 +43,8 @@ import { ref, watch } from 'vue';
 import { Sign } from '@/modules/app/enums/sign';
 import AuthApi from '@/api/auth.api';
 import Errors from '@/modules/app/helpers/errors';
-import { useAuthStore } from '@/stores/auth.store';
-import { useUserStore } from '@/stores/user.store';
+import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 
 interface Props {
   action: string;

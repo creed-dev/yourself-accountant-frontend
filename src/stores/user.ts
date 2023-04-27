@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { readonly, ref } from 'vue';
-import type { User } from '@/interfaces/user.interface';
-import { useDebtsStore } from '@/stores/debts.store';
+import type { User } from '@/interfaces/user';
+import { useDebtsStore } from '@/stores/debts';
 
 export const useUserStore = defineStore('user', () => {
   const debtsStore = useDebtsStore();

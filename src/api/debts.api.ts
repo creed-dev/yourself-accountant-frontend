@@ -1,5 +1,5 @@
-import axios from './instance.api';
-import type { Debt } from '@/interfaces/debt.interface';
+import axios from './instance';
+import type { Debt } from '@/interfaces/debt';
 import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/interfaces/changed-values-for-debt-update.interface';
 
 const createDebt = async (debt: Debt) => {

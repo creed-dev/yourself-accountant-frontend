@@ -8,17 +8,17 @@ export const dashboardRoutes = [
     meta: {
       layout: AppLayout.Dashboard,
     },
-    beforeEnter: [AccessGuards.dashboardGuard],
+    beforeEnter: [AccessGuards.dashboard],
     children: [
       {
         path: '',
-        name: RouteName.DASHBOARD_INDEX,
+        name: RouteName.DashboardIndex,
         component: () =>
           import('@/modules/dashboard/pages/DashboardIndexPage.vue'),
       },
       {
         path: 'debts',
-        name: RouteName.DASHBOARD_DEBTS,
+        name: RouteName.DashboardDebts,
         component: () =>
           import('@/modules/dashboard/pages/DashboardDebtsPage.vue'),
       },

@@ -27,12 +27,12 @@
 import SignDialog from '@/modules/app/components/SignDialog.vue';
 import { useQuasar } from 'quasar';
 import { Sign } from '@/modules/app/enums/sign';
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
 import { RouteName } from '@/router/router-name.enum';
 import { computed } from 'vue';
-import { useUserStore } from '@/stores/user.store';
+import { useUserStore } from '@/stores/user';
 
 const quasar = useQuasar();
 const authStore = useAuthStore();
@@ -57,6 +57,6 @@ function showModal(action: string) {
 function signOut() {
   authStore.deleteBearerToken();
   userStore.deleteUser();
-  router.push({ name: RouteName.HOME });
+  router.push({ name: RouteName.Home });
 }
 </script>

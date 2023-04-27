@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { loadLayoutMiddleware } from '@/router/middlewares/load-layout.middleware';
+import { loadLayout } from '@/router/middlewares/load-layout';
 import { dashboardRoutes } from '@/modules/dashboard/router';
 import { indexRoutes } from '@/modules/index/router';
 
@@ -8,6 +8,6 @@ const router = createRouter({
   routes: [...indexRoutes, ...dashboardRoutes],
 });
 
-router.beforeEach(loadLayoutMiddleware);
+router.beforeEach(loadLayout);
 
 export default router;

@@ -54,6 +54,6 @@ function successLogin() {
   });
 
   dialogIsOpen.value = false;
-  router.push({ name: RouteName.DASHBOARD_INDEX });
+  router.push({ name: RouteName.DashboardIndex });
 }
 </script>

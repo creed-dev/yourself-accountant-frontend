@@ -2,7 +2,7 @@ import type { RouteLocationNormalized } from 'vue-router';
 import { AppLayoutToFileMap } from '@/modules/app/layouts/layouts.types';
 import { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
 
-export async function loadLayoutMiddleware(
+export async function loadLayout(
   route: RouteLocationNormalized
 ): Promise<void> {
   const { layout } = route.meta;

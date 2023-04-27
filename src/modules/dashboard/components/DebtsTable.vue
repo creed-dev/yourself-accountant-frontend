@@ -123,11 +123,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Debt } from '@/interfaces/debt.interface';
+import type { Debt } from '@/interfaces/debt';
 import { ref } from 'vue';
 import Errors from '@/modules/app/helpers/errors';
 import DebtsApi from '@/api/debts.api';
-import { useDebtsStore } from '@/stores/debts.store';
+import { useDebtsStore } from '@/stores/debts';
 import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/interfaces/changed-values-for-debt-update.interface';
 
 interface Props {

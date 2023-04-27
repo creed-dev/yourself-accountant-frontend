@@ -68,7 +68,7 @@ const navList: NavItem[] = [
       {
         icon: 'space_dashboard',
         label: 'Панель',
-        routeName: RouteName.DASHBOARD_INDEX,
+        routeName: RouteName.DashboardIndex,
       },
     ],
   },
@@ -78,7 +78,7 @@ const navList: NavItem[] = [
       {
         icon: 'request_quote',
         label: 'Мне должны',
-        routeName: RouteName.DASHBOARD_DEBTS,
+        routeName: RouteName.DashboardDebts,
       },
     ],
   },
