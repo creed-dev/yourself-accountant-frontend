@@ -1,3 +1,3 @@
 export enum ResponseStatusCode {
-  UNAUTHORIZED = 401,
+  Unauthorized = 401,
 }

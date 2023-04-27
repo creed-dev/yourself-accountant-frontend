@@ -4,13 +4,13 @@
       <q-btn
         color="primary"
         label="Sign Up"
-        @click="showModal(signEnum.SIGN_UP)"
+        @click="showModal(signEnum.SignUp)"
       />
 
       <q-btn
         color="secondary"
         label="Sign In"
-        @click="showModal(signEnum.SIGN_IN)"
+        @click="showModal(signEnum.SignIn)"
       />
     </template>
 
@@ -26,20 +26,22 @@
 <script setup lang="ts">
 import SignDialog from '@/modules/app/components/SignDialog.vue';
 import { useQuasar } from 'quasar';
-import { SignEnum } from '@/modules/app/enums/sign.enum';
+import { Sign } from '@/modules/app/enums/sign';
 import { useAuthStore } from '@/stores/auth.store';
 import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
 import { RouteName } from '@/router/router-name.enum';
 import { computed } from 'vue';
+import { useUserStore } from '@/stores/user.store';
 
 const quasar = useQuasar();
 const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
 const router = useRouter();
 const route = useRoute();
 
-const signEnum = SignEnum;
+const signEnum = Sign;
 
 const onDashboardPage = computed(() => {
   return route.path.includes('dashboard');
@@ -54,7 +56,7 @@ function showModal(action: string) {
 
 function signOut() {
   authStore.deleteBearerToken();
-  user.value = null;
+  userStore.deleteUser();
   router.push({ name: RouteName.HOME });
 }
 </script>

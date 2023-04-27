@@ -7,7 +7,7 @@ export const indexRoutes = [
     name: RouteName.HOME,
     component: () => import('@/modules/index/pages/IndexPage.vue'),
     meta: {
-      layout: AppLayout.DEFAULT,
+      layout: AppLayout.Default,
     },
   },
 ];

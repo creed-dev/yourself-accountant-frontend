@@ -1,10 +1,8 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import type { User } from '@/interfaces/user.interface';
+import { readonly, ref } from 'vue';
 
 export const useAuthStore = defineStore('auth', () => {
   const bearerToken = ref<string>(localStorage.getItem('bearerToken') || '');
-  const user = ref<User | null>(null);
 
   const setBearerToken = (token: string) => {
     bearerToken.value = token;
@@ -16,5 +14,9 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('bearerToken');
   };
 
-  return { bearerToken, user, setBearerToken, deleteBearerToken };
+  return {
+    bearerToken: readonly(bearerToken),
+    setBearerToken,
+    deleteBearerToken,
+  };
 });

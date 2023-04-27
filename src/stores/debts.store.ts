@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { computed, readonly, ref } from 'vue';
 import type { Debt } from '@/interfaces/debt.interface';
 import { DebtType } from '@/modules/dashboard/enums/debt-type.enum';
 
@@ -46,7 +46,7 @@ export const useDebtsStore = defineStore('debts', () => {
   });
 
   return {
-    debts,
+    debts: readonly(debts),
     setDebts,
     addDebt,
     updateDebt,

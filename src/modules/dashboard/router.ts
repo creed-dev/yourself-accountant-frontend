@@ -6,7 +6,7 @@ export const dashboardRoutes = [
   {
     path: '/dashboard',
     meta: {
-      layout: AppLayout.DASHBOARD,
+      layout: AppLayout.Dashboard,
     },
     beforeEnter: [AccessGuards.dashboardGuard],
     children: [

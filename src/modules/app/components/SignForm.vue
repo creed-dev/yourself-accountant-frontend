@@ -23,7 +23,7 @@
       />
 
       <q-input
-        v-if="props.action === signEnum.SIGN_UP"
+        v-if="props.action === signEnum.SignUp"
         outlined
         type="password"
         v-model="repeatPassword"
@@ -40,11 +40,11 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { SignEnum } from '@/modules/app/enums/sign.enum';
+import { Sign } from '@/modules/app/enums/sign';
 import AuthApi from '@/api/auth.api';
 import Errors from '@/modules/app/helpers/errors';
 import { useAuthStore } from '@/stores/auth.store';
-import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/stores/user.store';
 
 interface Props {
   action: string;
@@ -54,9 +54,9 @@ const props = defineProps<Props>();
 const emit = defineEmits(['successRegister', 'successLogin']);
 
 const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
+const userStore = useUserStore();
 
-const signEnum = SignEnum;
+const signEnum = Sign;
 
 const email = ref<string>('');
 const password = ref<string>('');
@@ -65,7 +65,7 @@ const repeatPassword = ref<string>('');
 let passwordsMismatch: boolean = false;
 
 async function onSubmit() {
-  if (props.action === signEnum.SIGN_UP && !passwordsMismatch) {
+  if (props.action === signEnum.SignUp && !passwordsMismatch) {
     try {
       await AuthApi.signUp(email.value, password.value);
       emit('successRegister');
@@ -74,12 +74,12 @@ async function onSubmit() {
     }
   }
 
-  if (props.action === signEnum.SIGN_IN) {
+  if (props.action === signEnum.SignIn) {
     try {
       const login = await AuthApi.login(email.value, password.value);
-      authStore.setBearerToken(login.data.accessToken);
-      const me = await AuthApi.me();
-      user.value = me.data;
+
+      authStore.setBearerToken(login.accessToken);
+      userStore.setUser(await AuthApi.me());
       emit('successLogin');
     } catch (error: any) {
       Errors.notifyBackendError(error);
@@ -87,7 +87,7 @@ async function onSubmit() {
   }
 }
 
-if (props.action === signEnum.SIGN_UP) {
+if (props.action === signEnum.SignUp) {
   watch(password, (newValue) => {
     passwordsMismatch = !(newValue === repeatPassword.value);
   });
