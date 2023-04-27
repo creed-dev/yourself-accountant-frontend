@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/stores/auth.store';
 import { storeToRefs } from 'pinia';
-import { RouteName } from '@/enums/router-name.enum';
+import { RouteName } from '@/router/router-name.enum';
 
 const dashboardGuard = () => {
   const authStore = useAuthStore();

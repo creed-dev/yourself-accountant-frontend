@@ -24,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import SignDialog from '@/components/SignDialog/SignDialog.vue';
+import SignDialog from '@/modules/app/components/SignDialog.vue';
 import { useQuasar } from 'quasar';
-import { SignEnum } from '@/enums/sign.enum';
+import { SignEnum } from '@/modules/app/enums/sign.enum';
 import { useAuthStore } from '@/stores/auth.store';
 import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
-import { RouteName } from '@/enums/router-name.enum';
+import { RouteName } from '@/router/router-name.enum';
 import { computed } from 'vue';
 
 const quasar = useQuasar();

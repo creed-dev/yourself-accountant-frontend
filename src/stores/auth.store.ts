@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { User } from '@/models/user.interface';
+import type { User } from '@/interfaces/user.interface';
 
 export const useAuthStore = defineStore('auth', () => {
   const bearerToken = ref<string>(localStorage.getItem('bearerToken') || '');

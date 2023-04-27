@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { SignEnum } from '@/enums/sign.enum';
+import { SignEnum } from '@/modules/app/enums/sign.enum';
 import AuthApi from '@/api/auth.api';
-import Errors from '@/helpers/errors';
+import Errors from '@/modules/app/helpers/errors';
 import { useAuthStore } from '@/stores/auth.store';
 import { storeToRefs } from 'pinia';
 

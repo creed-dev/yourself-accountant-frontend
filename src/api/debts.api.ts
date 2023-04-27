@@ -1,6 +1,6 @@
 import axios from './instance.api';
-import type { Debt } from '@/models/debt.interface';
-import type { ChangedValuesForDebtUpdate } from '@/models/changed-values-for-debt-update.interface';
+import type { Debt } from '@/interfaces/debt.interface';
+import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/interfaces/changed-values-for-debt-update.interface';
 
 const createDebt = async (debt: Debt) => {
   return await axios().post<Debt>('/debts/create', debt);

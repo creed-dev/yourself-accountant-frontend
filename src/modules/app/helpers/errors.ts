@@ -1,5 +1,5 @@
 import { Notify } from 'quasar';
-import type { BackendError } from '@/models/backend-error.interface';
+import type { BackendError } from '@/modules/app/interfaces/backend-error.interface';
 import type { AxiosError } from 'axios';
 
 function notifyBackendError(error: AxiosError<BackendError>) {

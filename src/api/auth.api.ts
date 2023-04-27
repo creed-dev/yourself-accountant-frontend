@@ -1,5 +1,5 @@
 import axios from './instance.api';
-import type { User } from '@/models/user.interface';
+import type { User } from '@/interfaces/user.interface';
 
 const signUp = async (email: string, password: string) => {
   return await axios().post<User>(`/auth/signup`, {

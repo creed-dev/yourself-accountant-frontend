@@ -25,9 +25,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import DebtsAddForm from '@/components/Debts/DebtsAddForm/DebtsAddForm.vue';
-import DebtsTable from '@/components/Debts/DebtsTable.vue';
-import { DebtType } from '@/enums/debt-type.enum';
+import DebtsAddForm from '@/modules/dashboard/components/DebtsAddForm.vue';
+import DebtsTable from '@/modules/dashboard/components/DebtsTable.vue';
+import { DebtType } from '@/modules/dashboard/enums/debt-type.enum';
 import { useDebtsStore } from '@/stores/debts.store';
 import { storeToRefs } from 'pinia';
 

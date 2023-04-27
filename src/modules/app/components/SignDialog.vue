@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import SignForm from '@/components/SignForm/SignForm.vue';
+import SignForm from '@/modules/app/components/SignForm.vue';
 import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { useRouter } from 'vue-router';
-import { RouteName } from '@/enums/router-name.enum';
+import { RouteName } from '@/router/router-name.enum';
 
 interface Props {
   action: string;

@@ -1,6 +1,6 @@
 import type { RouteLocationNormalized } from 'vue-router';
-import { AppLayoutToFileMap } from '@/layouts/layouts.types';
-import { AppLayout } from '@/enums/app-layouts.enum';
+import { AppLayoutToFileMap } from '@/modules/app/layouts/layouts.types';
+import { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
 
 export async function loadLayoutMiddleware(
   route: RouteLocationNormalized
@@ -10,7 +10,7 @@ export async function loadLayoutMiddleware(
   const fileName = AppLayoutToFileMap[normalizedLayoutName];
   const fileNameWithoutExtension = fileName.split('.vue')[0];
   const component = await import(
-    `../../layouts/${fileNameWithoutExtension}.vue`
+    `../../modules/app/layouts/${fileNameWithoutExtension}.vue`
   );
 
   route.meta.layoutComponent = component.default;

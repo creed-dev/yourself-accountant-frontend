@@ -1,4 +1,4 @@
-import type { User } from '@/models/user.interface';
+import type { User } from '@/interfaces/user.interface';
 
 export interface Debt {
   id?: number;

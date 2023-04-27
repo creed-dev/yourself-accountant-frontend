@@ -53,10 +53,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Debt } from '@/models/debt.interface';
+import type { Debt } from '@/interfaces/debt.interface';
 import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts.store';
-import Errors from '@/helpers/errors';
+import Errors from '@/modules/app/helpers/errors';
 import type { QForm } from 'quasar';
 
 interface Props {
