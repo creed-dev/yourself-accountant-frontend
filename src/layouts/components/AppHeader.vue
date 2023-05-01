@@ -24,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import SignDialog from '@/components/SignDialog.vue';
+import SignDialog from '@/layouts/components/SignDialog.vue';
 import { useQuasar } from 'quasar';
-import { Sign } from '@/enums/sign';
+import { Sign } from '@/layouts/enums/sign';
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';

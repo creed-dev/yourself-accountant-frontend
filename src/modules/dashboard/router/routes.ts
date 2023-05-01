@@ -1,4 +1,4 @@
-import { AppLayout } from '@/layouts/app-layouts.enum';
+import { AppLayout } from '@/layouts/enums/app-layouts';
 import AccessGuards from '@/modules/dashboard/router/guards/access';
 import { dashboardDebtsRoutes } from '@/modules/dashboard/modules/debts/router/routes';
 import { dashboardIndexRoutes } from '@/modules/dashboard/modules/index/router/routes';

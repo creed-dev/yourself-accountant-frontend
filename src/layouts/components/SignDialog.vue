@@ -55,7 +55,7 @@ import { useRouter } from 'vue-router';
 import { RouteName } from '@/router/router-name.enum';
 import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
-import { Sign } from '@/enums/sign';
+import { Sign } from '@/layouts/enums/sign';
 import AuthApi from '@/api/auth.api';
 import Errors from '@/helpers/errors';
 
