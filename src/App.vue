@@ -6,22 +6,13 @@
 
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth';
 import AuthApi from '@/api/auth.api';
-import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
-import { ResponseStatusCode } from '@/enums/response-status-code.enum';
-import SignDialog from '@/components/SignDialog/SignDialog.vue';
-import { useQuasar } from 'quasar';
-import { SignEnum } from '@/enums/sign.enum';
-import { RouteName } from '@/enums/router-name.enum';
-import { useDebtsStore } from '@/stores/debts.store';
+import Errors from '@/helpers/errors';
+import { useUserStore } from '@/stores/user';
 
 const authStore = useAuthStore();
-const debtsStore = useDebtsStore();
-const { user } = storeToRefs(authStore);
-const router = useRouter();
-const quasar = useQuasar();
+const userStore = useUserStore();
 
 if (authStore.bearerToken) {
   getUser();
@@ -29,20 +20,9 @@ if (authStore.bearerToken) {
 
 async function getUser() {
   try {
-    const me = await AuthApi.me();
-    user.value = me.data;
-    debtsStore.setDebts(me.data.debts);
+    userStore.setUser(await AuthApi.me());
   } catch (error: any) {
-    if (error.response.data.statusCode === ResponseStatusCode.UNAUTHORIZED) {
-      router.push({ name: RouteName.HOME });
-
-      quasar.dialog({
-        component: SignDialog,
-        componentProps: {
-          action: SignEnum.SIGN_IN,
-        },
-      });
-    }
+    Errors.notifyBackendError(error);
   }
 }
 </script>

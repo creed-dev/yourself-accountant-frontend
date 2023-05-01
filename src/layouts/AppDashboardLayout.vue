@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <DefaultHeader></DefaultHeader>
+    <AppHeader></AppHeader>
     <q-drawer class="bg-slate-100 p-3" :width="200" v-model="showDrawer">
       <q-scroll-area class="fit">
         <div
@@ -42,10 +42,10 @@
 </template>
 
 <script setup lang="ts">
-import DefaultHeader from '@/components/AppHeader/AppHeader.vue';
-import { RouteName } from '@/enums/router-name.enum';
+import AppHeader from '@/layouts/components/AppHeader.vue';
+import { RouteName } from '@/router/router-name.enum';
 import { useRoute, useRouter } from 'vue-router';
-import { DashboardNavCategory } from '@/enums/DashboardNavCategory.enum';
+import { DashboardNavCategory } from '@/enums/dashboard-nav-category';
 
 interface NavItem {
   category: string;
@@ -63,22 +63,17 @@ const showDrawer = true;
 
 const navList: NavItem[] = [
   {
-    category: DashboardNavCategory.MAIN,
+    category: DashboardNavCategory.Main,
     items: [
       {
         icon: 'space_dashboard',
         label: 'Панель',
-        routeName: RouteName.DASHBOARD_INDEX,
+        routeName: RouteName.DashboardIndex,
       },
-    ],
-  },
-  {
-    category: DashboardNavCategory.DEBTS,
-    items: [
       {
         icon: 'request_quote',
-        label: 'Мне должны',
-        routeName: RouteName.DASHBOARD_DEBTS,
+        label: 'Долги',
+        routeName: RouteName.DashboardDebts,
       },
     ],
   },
