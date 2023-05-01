@@ -56,7 +56,7 @@ import { ref } from 'vue';
 import type { Debt } from '@/interfaces/debt';
 import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts';
-import Errors from '@/modules/app/helpers/errors';
+import Errors from '@/helpers/errors';
 import type { QForm } from 'quasar';
 
 interface Props {

@@ -42,10 +42,10 @@
 </template>
 
 <script setup lang="ts">
-import DefaultHeader from '@/modules/app/components/AppHeader.vue';
+import DefaultHeader from '@/components/AppHeader.vue';
 import { RouteName } from '@/router/router-name.enum';
 import { useRoute, useRouter } from 'vue-router';
-import { DashboardNavCategory } from '@/modules/dashboard/enums/dashboard-nav-category';
+import { DashboardNavCategory } from '@/enums/dashboard-nav-category';
 
 interface NavItem {
   category: string;

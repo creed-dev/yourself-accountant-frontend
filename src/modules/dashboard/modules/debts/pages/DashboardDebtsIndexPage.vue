@@ -5,8 +5,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import DebtsCard from '@/modules/dashboard/components/DebtsCard.vue';
-import { DebtType } from '@/modules/dashboard/enums/debt-type';
+import DebtsCard from '@/modules/dashboard/modules/debts/components/DebtsCard.vue';
+import { DebtType } from '@/modules/dashboard/modules/debts/enums/debt-type';
 
 const debtTypeEnum = DebtType;
 </script>

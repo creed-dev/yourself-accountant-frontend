@@ -1,5 +1,5 @@
 import type { VueElement } from 'vue';
-import type { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
+import type { AppLayout } from '@/layouts/app-layouts.enum';
 
 declare module 'vue-router' {
   interface RouteMeta {

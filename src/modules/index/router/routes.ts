@@ -1,5 +1,5 @@
 import { RouteName } from '@/router/router-name.enum';
-import { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
+import { AppLayout } from '@/layouts/app-layouts.enum';
 
 export const indexRoutes = [
   {

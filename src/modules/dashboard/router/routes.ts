@@ -1,6 +1,7 @@
-import { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
+import { AppLayout } from '@/layouts/app-layouts.enum';
 import AccessGuards from '@/modules/dashboard/router/guards/access';
-import { RouteName } from '@/router/router-name.enum';
+import { dashboardDebtsRoutes } from '@/modules/dashboard/modules/debts/router/routes';
+import { dashboardIndexRoutes } from '@/modules/dashboard/modules/index/router/routes';
 
 export const dashboardRoutes = [
   {
@@ -9,19 +10,6 @@ export const dashboardRoutes = [
       layout: AppLayout.Dashboard,
     },
     beforeEnter: [AccessGuards.main],
-    children: [
-      {
-        path: '',
-        name: RouteName.DashboardIndex,
-        component: () =>
-          import('@/modules/dashboard/pages/DashboardIndexPage.vue'),
-      },
-      {
-        path: 'debts',
-        name: RouteName.DashboardDebts,
-        component: () =>
-          import('@/modules/dashboard/pages/DashboardDebtsPage.vue'),
-      },
-    ],
+    children: [...dashboardIndexRoutes, ...dashboardDebtsRoutes],
   },
 ];

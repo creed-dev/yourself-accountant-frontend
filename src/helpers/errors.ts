@@ -1,12 +1,11 @@
 import { Notify, Dialog } from 'quasar';
-import type { BackendError } from '@/modules/app/interfaces/backend-error';
+import type { BackendError } from '@/interfaces/backend-error';
 import type { AxiosError } from 'axios';
-import { ResponseStatusCode } from '@/modules/app/enums/response-status-code';
-import SignDialog from '@/modules/app/components/SignDialog.vue';
-import { Sign } from '@/modules/app/enums/sign';
+import SignDialog from '@/components/SignDialog.vue';
+import { Sign } from '@/enums/sign';
 
 function notifyBackendError(error: AxiosError<BackendError>) {
-  if (error.response?.data.statusCode === ResponseStatusCode.Unauthorized) {
+  if (error.response?.data.statusCode === 401) {
     Dialog.create({
       component: SignDialog,
       componentProps: {

@@ -3,30 +3,30 @@
     <template v-if="!user">
       <q-btn
         color="primary"
-        label="Sign Up"
+        label="Регистрация"
         @click="showModal(signEnum.SignUp)"
       />
 
       <q-btn
         color="secondary"
-        label="Sign In"
+        label="Вход"
         @click="showModal(signEnum.SignIn)"
       />
     </template>
 
     <template v-else>
       <RouterLink to="/dashboard" v-if="!onDashboardPage">
-        <q-btn color="primary" label="Dashboard" />
+        <q-btn color="primary" label="Панель" />
       </RouterLink>
-      <q-btn color="red" label="Sign Out" @click="signOut()" />
+      <q-btn color="red" label="Выход" @click="signOut()" />
     </template>
   </q-header>
 </template>
 
 <script setup lang="ts">
-import SignDialog from '@/modules/app/components/SignDialog.vue';
+import SignDialog from '@/components/SignDialog.vue';
 import { useQuasar } from 'quasar';
-import { Sign } from '@/modules/app/enums/sign';
+import { Sign } from '@/enums/sign';
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
