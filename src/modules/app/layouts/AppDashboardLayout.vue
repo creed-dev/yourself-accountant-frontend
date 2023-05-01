@@ -45,7 +45,7 @@
 import DefaultHeader from '@/modules/app/components/AppHeader.vue';
 import { RouteName } from '@/router/router-name.enum';
 import { useRoute, useRouter } from 'vue-router';
-import { DashboardNavCategory } from '@/modules/dashboard/enums/DashboardNavCategory.enum';
+import { DashboardNavCategory } from '@/modules/dashboard/enums/dashboard-nav-category';
 
 interface NavItem {
   category: string;
@@ -63,7 +63,7 @@ const showDrawer = true;
 
 const navList: NavItem[] = [
   {
-    category: DashboardNavCategory.MAIN,
+    category: DashboardNavCategory.Main,
     items: [
       {
         icon: 'space_dashboard',
@@ -73,7 +73,7 @@ const navList: NavItem[] = [
     ],
   },
   {
-    category: DashboardNavCategory.DEBTS,
+    category: DashboardNavCategory.Debts,
     items: [
       {
         icon: 'request_quote',

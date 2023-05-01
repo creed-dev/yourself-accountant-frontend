@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 import DebtsCard from '@/modules/dashboard/components/DebtsCard.vue';
-import { DebtType } from '@/modules/dashboard/enums/debt-type.enum';
+import { DebtType } from '@/modules/dashboard/enums/debt-type';
 
 const debtTypeEnum = DebtType;
 </script>

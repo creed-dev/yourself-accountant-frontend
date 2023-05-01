@@ -1,5 +1,5 @@
 import { AppLayout } from '@/modules/app/layouts/app-layouts.enum';
-import AccessGuards from '@/router/guards/access';
+import AccessGuards from '@/modules/dashboard/router/guards/access';
 import { RouteName } from '@/router/router-name.enum';
 
 export const dashboardRoutes = [
@@ -8,7 +8,7 @@ export const dashboardRoutes = [
     meta: {
       layout: AppLayout.Dashboard,
     },
-    beforeEnter: [AccessGuards.dashboard],
+    beforeEnter: [AccessGuards.main],
     children: [
       {
         path: '',

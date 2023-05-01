@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, readonly, ref } from 'vue';
 import type { Debt } from '@/interfaces/debt';
-import { DebtType } from '@/modules/dashboard/enums/debt-type.enum';
+import { DebtType } from '@/modules/dashboard/enums/debt-type';
 
 export const useDebtsStore = defineStore('debts', () => {
   const debts = ref<Debt[]>([]);

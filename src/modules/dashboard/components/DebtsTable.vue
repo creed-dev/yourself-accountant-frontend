@@ -128,7 +128,7 @@ import { ref } from 'vue';
 import Errors from '@/modules/app/helpers/errors';
 import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts';
-import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/interfaces/changed-values-for-debt-update.interface';
+import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/interfaces/changed-values-for-debt-update';
 
 interface Props {
   debts: Debt[];

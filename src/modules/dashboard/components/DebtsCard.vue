@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import DebtsAddForm from '@/modules/dashboard/components/DebtsAddForm.vue';
 import DebtsTable from '@/modules/dashboard/components/DebtsTable.vue';
-import { DebtType } from '@/modules/dashboard/enums/debt-type.enum';
+import { DebtType } from '@/modules/dashboard/enums/debt-type';
 import { useDebtsStore } from '@/stores/debts';
 import { storeToRefs } from 'pinia';
 

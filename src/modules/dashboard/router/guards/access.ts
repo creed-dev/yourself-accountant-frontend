@@ -2,7 +2,7 @@ import { storeToRefs } from 'pinia';
 import { RouteName } from '@/router/router-name.enum';
 import { useUserStore } from '@/stores/user';
 
-const dashboard = () => {
+const main = () => {
   const userStore = useUserStore();
   const { user } = storeToRefs(userStore);
 
@@ -11,4 +11,4 @@ const dashboard = () => {
   }
 };
 
-export default { dashboard };
+export default { main };
