@@ -57,7 +57,6 @@ import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
 import { Sign } from '@/layouts/enums/sign';
 import AuthApi from '@/api/auth.api';
-import Errors from '@/helpers/errors';
 
 interface Props {
   action: string;
@@ -90,26 +89,23 @@ if (props.action === signEnum.SignUp) {
   });
 }
 
-async function onSubmit() {
+function onSubmit() {
   if (props.action === signEnum.SignUp && !passwordsMismatch) {
-    try {
-      await AuthApi.signUp(email.value, password.value);
+    AuthApi.signUp(email.value, password.value).then(() => {
       successRegistered();
-    } catch (error: any) {
-      Errors.notifyBackendError(error);
-    }
+    });
   }
 
   if (props.action === signEnum.SignIn) {
-    try {
-      const login = await AuthApi.login(email.value, password.value);
-
-      authStore.setBearerToken(login.accessToken);
-      userStore.setUser(await AuthApi.me());
-      successLogin();
-    } catch (error: any) {
-      Errors.notifyBackendError(error);
-    }
+    AuthApi.login(email.value, password.value)
+      .then((res) => {
+        authStore.setBearerToken(res.data.accessToken);
+        return AuthApi.me();
+      })
+      .then((res) => {
+        userStore.setUser(res.data);
+        successLogin();
+      });
   }
 }
 

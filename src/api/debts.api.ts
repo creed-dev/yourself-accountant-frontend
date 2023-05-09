@@ -10,11 +10,11 @@ const updateDebt = async (
   debtId: number,
   changedValues: ChangedValuesForDebtUpdate
 ) => {
-  return await axios().patch<Debt>(`/debts/update/${debtId}`, changedValues);
+  return await axios().patch<Debt>(`/debts/${debtId}/update`, changedValues);
 };
 
 const deleteDebt = async (debtId: number) => {
-  return await axios().delete<Debt>(`/debts/delete/${debtId}`);
+  return await axios().delete<Debt>(`/debts/${debtId}/delete`);
 };
 
 export default { createDebt, updateDebt, deleteDebt };

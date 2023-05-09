@@ -56,7 +56,6 @@ import { ref } from 'vue';
 import type { Debt } from '@/interfaces/debt';
 import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts';
-import Errors from '@/helpers/errors';
 import type { QForm } from 'quasar';
 
 interface Props {
@@ -73,22 +72,18 @@ const date = ref<string | null>(null);
 const amount = ref<number | null>(null);
 const showDisplayPopup = ref<boolean>(false);
 
-async function onSubmit() {
-  try {
-    const debt: Debt = {
-      name: name.value!,
-      amount: Number(amount.value),
-      date: date.value!.split('/').join('-'),
-      type: props.debtType,
-    };
+function onSubmit() {
+  const debt: Debt = {
+    name: name.value!,
+    amount: Number(amount.value),
+    date: date.value!.split('/').join('-'),
+    type: props.debtType,
+  };
 
-    const newDebt = await DebtsApi.createDebt(debt);
-    debtsStore.addDebt(newDebt.data);
-
+  DebtsApi.createDebt(debt).then((res) => {
+    debtsStore.addDebt(res.data);
     clearForm();
-  } catch (error: any) {
-    Errors.notifyBackendError(error);
-  }
+  });
 }
 
 function clearForm() {
