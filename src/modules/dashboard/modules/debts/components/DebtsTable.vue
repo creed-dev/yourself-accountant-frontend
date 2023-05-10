@@ -125,9 +125,9 @@
 <script setup lang="ts">
 import type { Debt } from '@/interfaces/debt';
 import { ref } from 'vue';
-import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts';
-import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/modules/debts/interfaces/changed-values-for-debt-update';
+import DebtsHelpers from '@/modules/dashboard/modules/debts/helpers/index';
+import DebtsApi from '@/api/debts.api';
 
 interface Props {
   debts: Debt[];
@@ -171,7 +171,7 @@ function openConfirmDeleteDialog(row: Debt) {
 }
 
 function onConfirmDeleteClick() {
-  DebtsApi.deleteDebt(confirmDeleteDialogObject.value!.id!).then(() => {
+  DebtsApi.delete(confirmDeleteDialogObject.value!.id!).then(() => {
     debtsStore.deleteDebt(confirmDeleteDialogObject.value!);
   });
 }
@@ -181,12 +181,13 @@ function onCancelDeleteClick() {
 }
 
 function onDoneClick(row: Debt) {
-  const changedValues: ChangedValuesForDebtUpdate = {
+  const updatedDebt: Debt = {
+    ...row,
     amount: Number(row.amount),
-    date: row.date.split('/').join('-'),
+    date: DebtsHelpers.reformatDate(row.date),
   };
 
-  DebtsApi.updateDebt(row.id!, changedValues).then((res) => {
+  DebtsApi.update(updatedDebt.id!, updatedDebt).then((res) => {
     debtsStore.updateDebt(res.data);
     selectedRows.value = selectedRows.value.filter(
       (item) => item.id !== row.id
