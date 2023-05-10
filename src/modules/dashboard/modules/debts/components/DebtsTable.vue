@@ -125,10 +125,9 @@
 <script setup lang="ts">
 import type { Debt } from '@/interfaces/debt';
 import { ref } from 'vue';
-import Errors from '@/helpers/errors';
-import DebtsApi from '@/api/debts.api';
 import { useDebtsStore } from '@/stores/debts';
-import type { ChangedValuesForDebtUpdate } from '@/modules/dashboard/modules/debts/interfaces/changed-values-for-debt-update';
+import DebtsHelpers from '@/modules/dashboard/modules/debts/helpers/index';
+import DebtsApi from '@/api/debts.api';
 
 interface Props {
   debts: Debt[];
@@ -171,35 +170,29 @@ function openConfirmDeleteDialog(row: Debt) {
   confirmDeleteDialogObject.value = row;
 }
 
-async function onConfirmDeleteClick() {
-  try {
-    await DebtsApi.deleteDebt(confirmDeleteDialogObject.value!.id!);
+function onConfirmDeleteClick() {
+  DebtsApi.delete(confirmDeleteDialogObject.value!.id!).then(() => {
     debtsStore.deleteDebt(confirmDeleteDialogObject.value!);
-  } catch (error: any) {
-    Errors.notifyBackendError(error);
-  }
+  });
 }
 
 function onCancelDeleteClick() {
   confirmDeleteDialogObject.value = null;
 }
 
-async function onDoneClick(row: Debt) {
-  try {
-    const changedValues: ChangedValuesForDebtUpdate = {
-      amount: Number(row.amount),
-      date: row.date.split('/').join('-'),
-    };
+function onDoneClick(row: Debt) {
+  const updatedDebt: Debt = {
+    ...row,
+    amount: Number(row.amount),
+    date: DebtsHelpers.reformatDate(row.date),
+  };
 
-    const updatedDebt = await DebtsApi.updateDebt(row.id!, changedValues);
-    debtsStore.updateDebt(updatedDebt.data);
-
+  DebtsApi.update(updatedDebt.id!, updatedDebt).then((res) => {
+    debtsStore.updateDebt(res.data);
     selectedRows.value = selectedRows.value.filter(
       (item) => item.id !== row.id
     );
-  } catch (error: any) {
-    Errors.notifyBackendError(error);
-  }
+  });
 }
 
 function onCancelClick(row: Debt) {

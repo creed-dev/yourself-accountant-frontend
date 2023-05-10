@@ -8,7 +8,6 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { useAuthStore } from '@/stores/auth';
 import AuthApi from '@/api/auth.api';
-import Errors from '@/helpers/errors';
 import { useUserStore } from '@/stores/user';
 
 const authStore = useAuthStore();
@@ -18,11 +17,9 @@ if (authStore.bearerToken) {
   getUser();
 }
 
-async function getUser() {
-  try {
-    userStore.setUser(await AuthApi.me());
-  } catch (error: any) {
-    Errors.notifyBackendError(error);
-  }
+function getUser() {
+  AuthApi.me().then((res) => {
+    userStore.setUser(res.data);
+  });
 }
 </script>

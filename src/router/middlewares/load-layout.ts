@@ -7,7 +7,10 @@ export async function loadLayout(
 ): Promise<void> {
   const { layout } = route.meta;
   const fileName = AppLayoutToFileMap[layout || AppLayout.Default];
-  const component = await import(`../../layouts/${fileName}`);
+  const fileNameWithoutExtension = fileName.split('.vue')[0];
+  const component = await import(
+    `../../layouts/${fileNameWithoutExtension}.vue`
+  );
 
   route.meta.layoutComponent = component.default;
 }
